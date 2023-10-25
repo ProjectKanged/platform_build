@@ -2149,6 +2149,19 @@ function embark() {
     esac
 }
 
+function advance() {
+    if [[ -z "$TARGET_PRODUCT" ]]; then
+        echo "Error: No device target set. Please use 'embark' or 'lunch' to set the target device."
+        return 1
+    fi
+    
+    if [[ "$1" == "fastboot" ]]; then
+        m updatepackage
+    else
+        m otapackage
+    fi
+}
+
 validate_current_shell
 set_global_paths
 source_vendorsetup
